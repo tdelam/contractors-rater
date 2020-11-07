@@ -8,7 +8,11 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 
-// Get all contractors
+/* Lists contractors
+* @param req
+* @param res
+* @returns Contractors | error
+*/
 app.get("/api/v1/contractors", async (req, res) => {
   try {
     const results = await db.query("SELECT * FROM contractors");
@@ -21,11 +25,15 @@ app.get("/api/v1/contractors", async (req, res) => {
       }
     });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ message: 'There was an error getting contractors.' })
   }
 })
 
-// Get a contractor
+/* Gets a contractor
+* @param req { params: id }
+* @param res
+* @returns Contractor | error
+*/
 app.get("/api/v1/contractors/:id", async (req, res) => {
   try {
     // Do not string concat queries - bad security! paramterize instead!
@@ -38,11 +46,15 @@ app.get("/api/v1/contractors/:id", async (req, res) => {
       }
     })
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ message: 'There was an error getting contractor.' })
   }
 })
 
-// Create a contractor
+/* Creates a contractor
+* @param req
+* @param res
+* @returns Contractor | error
+*/
 app.post("/api/v1/contractors", async (req, res) => {
   try {
     const {
@@ -63,11 +75,15 @@ app.post("/api/v1/contractors", async (req, res) => {
       }
     })
   } catch (err) {
-    console.log(err)
+    return res.status(500).json({ message: 'There was an error creating contractor.' })
   }
 })
 
-// Update a contractor
+/* Update a contractor
+* @param req { params: id }
+* @param res
+* @returns Updated contractor | error
+*/
 app.put("/api/v1/contractors/:id", async (req, res) => {
   try {
     const {
@@ -87,11 +103,16 @@ app.put("/api/v1/contractors/:id", async (req, res) => {
       }
     })
   } catch (err) {
-    console.log(err)
+    return res.status(500).json({ message: 'There was an error updating contractor.' })
   }
 })
 
-// Delete a contractor
+/**
+ * Delete a contractor
+ * @param {*} req
+ * @param {*} res
+ * @return success | error
+ */
 app.delete("/api/v1/contractors/:id", async (req, res) => {
   try {
     const result = await db.query("DELETE FROM contractors WHERE id = $1", [req.params.id]);
@@ -99,11 +120,12 @@ app.delete("/api/v1/contractors/:id", async (req, res) => {
       status: "success"
     })
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({ message: 'There was an error deleting the contractor.' })
   }
 
 })
 
+// Server
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server is up and listening on port ${port}`);
