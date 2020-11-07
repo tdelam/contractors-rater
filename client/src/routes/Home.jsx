@@ -1,5 +1,6 @@
 import React from 'react';
 import AddContractor from '../components/AddContractor';
+import ContractorList from '../components/ContractorList';
 import Header from '../components/Header';
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
     <>
       <Header />
       <AddContractor />
+      <ContractorList />
     </>
   )
 }

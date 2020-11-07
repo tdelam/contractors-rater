@@ -4,21 +4,24 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { ContractorsContextProvider } from "./context/ContractorsContext";
 import ContractorDetail from "./routes/ContractorDetail";
 import Home from "./routes/Home";
 import UpdateContractor from "./routes/UpdateContractor";
 
 const App = () => {
   return (
-    <div>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/contractors/:id/update" component={UpdateContractor} />
-          <Route exact path="/contractors/:id" component={ContractorDetail} />
-        </Switch>
-      </Router>
-    </div>
+    <ContractorsContextProvider>
+      <div className="container">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/contractors/:id/update" component={UpdateContractor} />
+            <Route exact path="/contractors/:id" component={ContractorDetail} />
+          </Switch>
+        </Router>
+      </div>
+    </ContractorsContextProvider>
   );
 };
 
