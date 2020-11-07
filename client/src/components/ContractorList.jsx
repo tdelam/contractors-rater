@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect, useContext } from "react";
+import ContractorsAPI from "../apis/ContractorsAPI";
+import { ContractorsContext } from "../context/ContractorsContext";
 
-const ContractorList = () => {
+const ContractorList = (props) => {
+  const { contractors, setContractors } = useContext(ContractorsContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await ContractorsAPI.get("/");
+        setContractors(response.data.contractors);
+      } catch (err) {
+        console.log("err ", err);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="list-group">
       <table className="table table-hover table-dark">
@@ -15,41 +31,25 @@ const ContractorList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              Acme Inc.
-            </td>
-            <td>Toronto</td>
-            <td>$$</td>
-            <td>Rating</td>
-            <td><button className="btn btn-warning">Edit</button></td>
-            <td><button className="btn btn-danger">Delete</button></td>
-          </tr>
-          <tr>
-            <td>
-              Acme Inc.
-            </td>
-            <td>Toronto</td>
-            <td>$$</td>
-            <td>Rating</td>
-            <td><button className="btn btn-warning">Edit</button></td>
-            <td><button className="btn btn-danger">Delete</button></td>
-          </tr>
-
-          <tr>
-            <td>
-              Acme Inc.
-            </td>
-            <td>Toronto</td>
-            <td>$$</td>
-            <td>Rating</td>
-            <td><button className="btn btn-warning">Edit</button></td>
-            <td><button className="btn btn-danger">Delete</button></td>
-          </tr>
+          {contractors &&
+            contractors.map((contract) => (
+              <tr key={contract.id}>
+                <td>{contract.name}</td>
+                <td>{contract.location}</td>
+                <td>{"$".repeat(contract.price_range)}</td>
+                <td>Rating</td>
+                <td>
+                  <button className="btn btn-warning">Edit</button>
+                </td>
+                <td>
+                  <button className="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default ContractorList
+export default ContractorList;

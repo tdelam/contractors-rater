@@ -1,10 +1,12 @@
 require('dotenv').config();
 
 const express = require("express");
+const cors = require("cors");
 const db = require("./db");
 const morgan = require("morgan");
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -20,9 +22,7 @@ app.get("/api/v1/contractors", async (req, res) => {
     res.status(200).json({
       status: "success",
       results: results.rows.length,
-      data: {
-        contractors: results.rows
-      }
+      contractors: results.rows
     });
   } catch (err) {
     return res.status(500).json({ message: 'There was an error getting contractors.' })
@@ -41,9 +41,7 @@ app.get("/api/v1/contractors/:id", async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      data: {
-        contractor: result.rows[0]
-      }
+      contractor: result.rows[0]
     })
   } catch (err) {
     return res.status(500).json({ message: 'There was an error getting contractor.' })
@@ -70,9 +68,7 @@ app.post("/api/v1/contractors", async (req, res) => {
 
     res.status(201).json({
       status: "success",
-      data: {
-        contractor: result.rows[0]
-      }
+      contractor: result.rows[0]
     })
   } catch (err) {
     return res.status(500).json({ message: 'There was an error creating contractor.' })
@@ -98,9 +94,7 @@ app.put("/api/v1/contractors/:id", async (req, res) => {
                                   id = $4 RETURNING *`, [name, location, price_range, req.params.id])
     res.status(200).json({
       status: "success",
-      data: {
-        contractor: result.rows[0]
-      }
+      contractor: result.rows[0]
     })
   } catch (err) {
     return res.status(500).json({ message: 'There was an error updating contractor.' })
