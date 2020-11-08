@@ -6,7 +6,6 @@ export const ContractorsContextProvider = props => {
   const [contractors, setContractors] = useState([]);
 
   const addContractor = (contractor) => {
-    console.log("connn ", contractor);
     setContractors([...contractors, contractor])
   }
 

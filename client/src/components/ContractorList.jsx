@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import ContractorsAPI from "../apis/ContractorsAPI";
 import { ContractorsContext } from "../context/ContractorsContext";
 
 const ContractorList = (props) => {
   const { contractors, setContractors } = useContext(ContractorsContext);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,7 +12,7 @@ const ContractorList = (props) => {
         const response = await ContractorsAPI.get("/");
         setContractors(response.data.contractors);
       } catch (err) {
-        console.log("err ", err);
+        setError(`${err}`);
       }
     };
     fetchData();
@@ -19,6 +20,11 @@ const ContractorList = (props) => {
 
   return (
     <div className="list-group">
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
       <table className="table table-hover table-dark">
         <thead>
           <tr className="bg-primary">

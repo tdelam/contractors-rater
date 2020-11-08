@@ -6,7 +6,7 @@ const AddContractor = () => {
   const [form, setFormState] = useState({
     name: "",
     location: "",
-    priceRange: "",
+    priceRange: "Price Range",
   });
 
   const [error, setError] = useState("");
@@ -78,7 +78,7 @@ const AddContractor = () => {
               <option value="2">$$</option>
               <option value="3">$$$</option>
               <option value="4">$$$$</option>
-              <option value="1">$$$$$</option>
+              <option value="5">$$$$$</option>
             </select>
           </div>
           <button type="submit" className="btn btn-primary">

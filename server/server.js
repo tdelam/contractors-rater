@@ -17,7 +17,7 @@ app.use(morgan("dev"));
 */
 app.get("/api/v1/contractors", async (req, res) => {
   try {
-    const results = await db.query("SELECT * FROM contractors ORDER BY");
+    const results = await db.query("SELECT * FROM contractors");
 
     res.status(200).json({
       status: "success",
