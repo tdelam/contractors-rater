@@ -18,6 +18,18 @@ const ContractorList = (props) => {
     fetchData();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await ContractorsAPI.delete(`/${id}`)
+      console.log(response);
+      setContractors(contractors.filter(contractor => {
+        return contractor.id !== id
+      }))
+    } catch (err) {
+      setError(`${err}`);
+    }
+  }
+
   return (
     <div className="list-group">
       {error && (
@@ -38,17 +50,22 @@ const ContractorList = (props) => {
         </thead>
         <tbody>
           {contractors &&
-            contractors.map((contract) => (
-              <tr key={contract.id}>
-                <td>{contract.name}</td>
-                <td>{contract.location}</td>
-                <td>{"$".repeat(contract.price_range)}</td>
+            contractors.map((contractor) => (
+              <tr key={contractor.id}>
+                <td>{contractor.name}</td>
+                <td>{contractor.location}</td>
+                <td>{"$".repeat(contractor.price_range)}</td>
                 <td>Rating</td>
                 <td>
                   <button className="btn btn-warning">Edit</button>
                 </td>
                 <td>
-                  <button className="btn btn-danger">Delete</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(contractor.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
