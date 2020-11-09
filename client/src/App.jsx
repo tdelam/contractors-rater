@@ -5,9 +5,9 @@ import {
   Route
 } from "react-router-dom";
 import { ContractorsContextProvider } from "./context/ContractorsContext";
-import ContractorDetail from "./routes/ContractorDetail";
+import ContractorDetail from "./routes/Detail";
 import Home from "./routes/Home";
-import UpdateContractor from "./routes/UpdateContractor";
+import UpdateContractor from "./routes/Update";
 
 const App = () => {
   return (

@@ -1,10 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import ContractorsAPI from "../apis/ContractorsAPI";
 import { ContractorsContext } from "../context/ContractorsContext";
 
 const ContractorList = (props) => {
   const { contractors, setContractors } = useContext(ContractorsContext);
   const [error, setError] = useState("");
+
+  let history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,16 +21,25 @@ const ContractorList = (props) => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
     try {
-      const response = await ContractorsAPI.delete(`/${id}`)
-      console.log(response);
+      await ContractorsAPI.delete(`/${id}`)
       setContractors(contractors.filter(contractor => {
         return contractor.id !== id
       }))
     } catch (err) {
       setError(`${err}`);
     }
+  }
+
+  const handleUpdate = async (e, id) => {
+    e.stopPropagation();
+    history.push(`/contractors/${id}/update`)
+  }
+
+  const handleSelect = async (id) => {
+    history.push(`/contractors/${id}`)
   }
 
   return (
@@ -51,18 +63,23 @@ const ContractorList = (props) => {
         <tbody>
           {contractors &&
             contractors.map((contractor) => (
-              <tr key={contractor.id}>
+              <tr onClick={() => handleSelect(contractor.id)} key={contractor.id}>
                 <td>{contractor.name}</td>
                 <td>{contractor.location}</td>
                 <td>{"$".repeat(contractor.price_range)}</td>
                 <td>Rating</td>
                 <td>
-                  <button className="btn btn-warning">Edit</button>
+                  <button
+                    className="btn btn-warning"
+                    onClick={(e) => handleUpdate(e, contractor.id)}
+                  >
+                    Edit
+                  </button>
                 </td>
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleDelete(contractor.id)}
+                    onClick={(e) => handleDelete(e, contractor.id)}
                   >
                     Delete
                   </button>
