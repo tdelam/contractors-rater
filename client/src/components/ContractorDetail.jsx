@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ContractorsAPI from "../apis/ContractorsAPI";
 import { ContractorsContext } from "../context/ContractorsContext";
+import StarRating from "./StarRating";
 
 const ContractorDetail = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const ContractorDetail = () => {
 
   return (
     <div>
-      <h1>{selectedContractor && selectedContractor.name}</h1>
+      <h1>{selectedContractor && <StarRating rating={1.7} />}</h1>
     </div>
   )
 };
