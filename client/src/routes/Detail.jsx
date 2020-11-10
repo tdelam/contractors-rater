@@ -1,10 +1,11 @@
 import React from 'react';
+import ContractorDetail from '../components/ContractorDetail';
 
 const Detail = () => {
   return (
-    <div>
-      Contractor Detail Page
-    </div>
+    <>
+      <ContractorDetail />
+    </>
   )
 }
 
