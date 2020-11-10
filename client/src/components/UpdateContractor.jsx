@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { ContractorsContext } from "../context/ContractorsContext";
 import ContractorsAPI from "../apis/ContractorsAPI";
 
 const UpdateContractor = () => {
   const { id } = useParams();
-  const { contractors } = useContext(ContractorsContext);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [priceRange, setPriceRange] = useState("Price Range");
@@ -36,7 +34,7 @@ const UpdateContractor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const updatedContractor = await ContractorsAPI.put(`/${id}`, {
+      await ContractorsAPI.put(`/${id}`, {
         name,
         location,
         price_range: priceRange
