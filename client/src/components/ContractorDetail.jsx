@@ -5,6 +5,7 @@ import { ContractorsContext } from "../context/ContractorsContext";
 import Reviews from "./Reviews";
 import StarRating from "./StarRating";
 import AddReview from "./AddReview";
+import { Link } from "react-router-dom";
 
 const ContractorDetail = () => {
   const { id } = useParams();
@@ -45,10 +46,12 @@ const ContractorDetail = () => {
                 : "(0)"}
             </span>
           </div>
+
           <div className="mt-3">
             <Reviews reviews={selectedContractor.reviews} />
           </div>
           <AddReview />
+          <Link to="/" className="pt-2">&larr; Go Back</Link>
         </>
       )}
     </>

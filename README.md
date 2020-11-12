@@ -39,9 +39,14 @@ Connect to your Postgresql database and issue the following commands (this could
    INSERT INTO contractors (name, location, price_range) VALUES ('Builders Inc', 'Minnesota', 2);
    INSERT INTO contractors (name, location, price_range) VALUES ('Installers Inc', 'Sudbury', 5);
    ```
-6. `\q` to exit the shell
+6. ```
+   INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Jane', 1, 'Contractor was fast and was safe!', 5);
+   INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('john', 1, 'Yah, just OK I guess, he could have did a better job!', 3);
+   INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Alex', 2, 'Yah, just OK I guess, he could have did a better job!', 3);
+   INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Matthew', 3, 'Yah, just OK I guess, he could have did a better job!', 3);
+   ```
 
-```
+7. `\q` to exit the shell
 
 # Code/Server Scripts
 
@@ -49,31 +54,37 @@ Connect to your Postgresql database and issue the following commands (this could
 
 In the project root directory, run:
 
-```
+- `cd server`
+- `yarn install`
 
-$  cd server
-$ yarn install
-\$ yarn start
+Start the node server:
 
-```
+- `yarn start`
 
 Nodemon is a dep so any changes to the backend code will refresh without restarting the server.
 
-
 ## ReactJS Install and Run
+
 In the project root directory, run:
 
-```
+- `cd client`
+- `yarn install`
 
-$  cd client
-$ yarn install
-\$ yarn start
+To start the web server, run:
 
-```
+- `yarn start`
+
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.
-```
 
 Once you're logged in, go ahead and add contractors/sub-contractors. You can also add ratings, update, and delete entries.
+
+```
+
+```
+
+```
+
+```

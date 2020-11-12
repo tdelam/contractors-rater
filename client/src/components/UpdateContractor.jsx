@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import ContractorsAPI from "../apis/ContractorsAPI";
 
 const UpdateContractor = () => {
@@ -88,7 +88,8 @@ const UpdateContractor = () => {
             <option value="5">$$$$$</option>
           </select>
         </div>
-        <button type="submit" className="btn btn-primary">Update</button>
+        <button type="submit" className="btn btn-primary mr-2">Update</button>
+        <Link to="/" className="btn btn-danger ml-2">Cancel</Link>
       </form>
     </>
   );
