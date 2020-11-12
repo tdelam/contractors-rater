@@ -11,7 +11,7 @@ PGDATABASE=contractors_rater
 PGPORT=5432
 ```
 
-Connect to your Postgresql database and issue the following commands:
+Connect to your Postgresql database and issue the following commands (this could and should be a script/migration):
 
 1. `CREATE DATABASE contractors_rater;`
 2. `\connect contractors_rater;`
@@ -34,11 +34,12 @@ Connect to your Postgresql database and issue the following commands:
    ```
 5. ```
    INSERT INTO contractors (name, location, price_range) VALUES ('ACME Inc', 'Toronto', 3);
-   INSERT INTO contractors (name, location, price_range) VALUES ('Chicken Inc', 'Toronto', 1);
-   INSERT INTO contractors (name, location, price_range) VALUES ('Hammers Inc', 'Toronto', 3);
-   INSERT INTO contractors (name, location, price_range) VALUES ('Builders Inc', 'Toronto', 2);
-   INSERT INTO contractors (name, location, price_range) VALUES ('Installers Inc', 'Toronto', 5);
+   INSERT INTO contractors (name, location, price_range) VALUES ('Chicken', 'Ottawa', 1);
+   INSERT INTO contractors (name, location, price_range) VALUES ('Hammers Inc', 'Chicago', 3);
+   INSERT INTO contractors (name, location, price_range) VALUES ('Builders Inc', 'Minnesota', 2);
+   INSERT INTO contractors (name, location, price_range) VALUES ('Installers Inc', 'Sudbury', 5);
    ```
+6. `\q` to exit the shell
 
 ```
 
