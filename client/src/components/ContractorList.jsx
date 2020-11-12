@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ContractorsAPI from "../apis/ContractorsAPI";
 import { ContractorsContext } from "../context/ContractorsContext";
+import StarRating from "./StarRating";
 
 const ContractorList = (props) => {
   const { contractors, setContractors } = useContext(ContractorsContext);
@@ -42,6 +43,19 @@ const ContractorList = (props) => {
     history.push(`/contractors/${id}`)
   }
 
+  const renderRating = (contractor) => {
+    if (!contractor.count) {
+      return <span className="text-warning">0 reviews</span>
+    }
+
+    return (
+      <>
+        <StarRating rating={contractor.average_rating} />
+        <span className="text-warning ml-1">({contractor.count})</span>
+      </>
+    )
+  }
+
   return (
     <div className="list-group">
       {error && (
@@ -67,7 +81,7 @@ const ContractorList = (props) => {
                 <td>{contractor.name}</td>
                 <td>{contractor.location}</td>
                 <td>{"$".repeat(contractor.price_range)}</td>
-                <td>Rating</td>
+                <td>{renderRating(contractor)}</td>
                 <td>
                   <button
                     className="btn btn-warning"
