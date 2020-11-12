@@ -1,3 +1,8 @@
+/* Create database */
+CREATE DATABASE contractors_rater;
+
+\connect contractors_rater
+
 /* Contractors table */
 CREATE TABLE contractors (
   id SERIAL NOT NULL PRIMARY KEY,
@@ -22,6 +27,13 @@ INSERT INTO contractors (name, location, price_range) VALUES ('Hammers Inc', 'To
 INSERT INTO contractors (name, location, price_range) VALUES ('Builders Inc', 'Toronto', 2);
 INSERT INTO contractors (name, location, price_range) VALUES ('Installers Inc', 'Toronto', 5);
 
-INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Trevor', 41, 'Contractor was fast and was safe!', 5);
-INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('john Dulong', 41, 'Yah, just OK I guess, he could have did a better job!', 3);
-INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Lesley', 38, 'Unsafe! Beware!', 1);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Trevor', 1, 'Contractor was fast and was safe!', 5);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('john', 1, 'Yah, just OK I guess, he could have did a better job!', 3);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Lesley', 2, 'Unsafe! Beware!', 1);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Dave', 1, 'Contractor was fast and was safe!', 5);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Alex', 1, 'Yah, just OK I guess, he could have did a better job!', 3);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Ryan', 2, 'Unsafe! Beware!', 1);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Alex', 3, 'Yah, just OK I guess, he could have did a better job!', 3);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Ryan', 4, 'Unsafe! Beware!', 1);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Alex', 5, 'Yah, just OK I guess, he could have did a better job!', 3);
+INSERT INTO reviews (name, contractor_id, content, rating) VALUES ('Ryan', 2, 'Unsafe! Beware!', 1);

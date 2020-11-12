@@ -20,13 +20,13 @@ app.get("/api/v1/contractors", async (req, res) => {
     const results = await db.query(
       "select * from contractors left join (select contractor_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by contractor_id) reviews on contractors.id = reviews.contractor_id;"
     );
-
     res.status(200).json({
       status: "success",
       results: results.rows.length,
       contractors: results.rows
     });
   } catch (err) {
+    console.log("err ", err);
     return res.status(500).json({ message: 'There was an error getting contractors.' })
   }
 })
